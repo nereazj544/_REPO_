@@ -1,7 +1,8 @@
 # _REPO_
 
 # Links de importacia
-https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/xmldoc/recommended-tags
+https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/xmldoc/recommended-tags <br>
+https://rjcodeadvance.com/interfaz-grafico-de-usuario-modernista-multi-window-con-c-version-completa/
 
 # Documentacion
 
