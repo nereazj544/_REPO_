@@ -12,8 +12,9 @@ Instrucciones: Es relativomante hacerlo con un txt o hacer un readme.md donde se
 - https://learn.microsoft.com/es-es/visualstudio/ide/reference/options-text-editor-csharp-formatting?view=vs-2022 <br>
 -https://learn.microsoft.com/es-es/visualstudio/ide/reference/options-text-editor-csharp-formatting?view=vs-2022 <br>
 - https://cs.uns.edu.ar/~ldm/mypage/data/oc/info/guia_para_la_documentacion_de_proyectos_de_software.pdf<br>
-- <br>
-
+- https://www.codemotion.com/magazine/es/dev-life-es/consejos-para-escribir-documentacion-tecnica-como-un-dev-senior/<br>
+- https://www.justinmind.com/es/blog/especificacion-funcional-documentacion/<br>
+- documento funcional de un codigo de programacion<br>
 
 # TODO
 Revisar porque sale un campo en NULL del s_Socket: 
