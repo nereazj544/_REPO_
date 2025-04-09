@@ -1,11 +1,17 @@
 # _REPO_
 
+
+# Documentacion del codigo
+Instrucciones: Es relativomante hacerlo con un txt o hacer un readme.md donde se documentara el codigo, o sobre el codigo. Buscar mas informacion acerca de la documentacion del codigo. 
+
 # Links de importacia
 - https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/xmldoc/recommended-tags <br>
 - https://rjcodeadvance.com/interfaz-grafico-de-usuario-modernista-multi-window-con-c-version-completa/ <br>
 - https://learn.microsoft.com/es-es/dotnet/api/system.text.utf8encoding?view=net-8.0 <br>
 - https://learn.microsoft.com/es-es/dotnet/api/system.text.utf8encoding?view=net-8.0 <br>
-- <br>
+- https://learn.microsoft.com/es-es/visualstudio/ide/reference/options-text-editor-csharp-formatting?view=vs-2022 <br>
+-https://learn.microsoft.com/es-es/visualstudio/ide/reference/options-text-editor-csharp-formatting?view=vs-2022 <br>
+- https://cs.uns.edu.ar/~ldm/mypage/data/oc/info/guia_para_la_documentacion_de_proyectos_de_software.pdf<br>
 - <br>
 
 
