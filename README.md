@@ -13,6 +13,13 @@
 Revisar porque sale un campo en NULL del s_Socket: 
 1>C:\Users\Administrador\Downloads\Chat_Cliente-master\Chat_Cliente\Cliente.cs(25,16,25,24): warning CS0649: El campo 'Client.s_Socket' nunca se asigna y siempre tendrá el valor predeterminado null
 
+Congelamiento en la parte de los mensajes de envio al servidor
+
+
+Cosas anomalias del codigo cliente: == CLIENTE CHAT ==
+Conectado al Servidor
+Escribe tu mensaje para finalizar la conexion 'fin'
+Error: Object reference not set to an instance of an object.
 
 # Documentacion
 
@@ -42,3 +49,264 @@ Revisar porque sale un campo en NULL del s_Socket:
     Etiquetas para métodos y tipos genéricos: estas etiquetas solo se usan en métodos y tipos genéricos.
         <typeparam> *: el valor de este elemento se muestra en IntelliSense en Visual Studio.
         <typeparamref>
+---
+
+Codigo Cliente
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Chat_Cliente
+{
+   
+    /// <summary>
+    /// Class Client
+    /// </summary>
+
+    class Client
+    {
+        #region VARIABLES
+        private IPHostEntry host; // Determina el host local
+        private IPAddress iPAddress; // Obtiene la direccion IP Local
+        private IPEndPoint localEndPoint; // Crea el punto de enlace local
+
+        //VARIABLES PARA EL SOCKET
+        Socket c_Socket; // Crea el socket del cliente
+        Socket s_Socket; //Crea el socket del servidor
+
+        #endregion
+
+        //Constructor de la clase cliente, donde al igual que al servidor se le pasa el ip y el nº del puerto
+        public Client(string ipLocal, int port){
+            host = Dns.GetHostEntry(ipLocal); // Determina el host local
+            iPAddress = host.AddressList[0]; //Obtiene la direccion IP local 
+            localEndPoint = new IPEndPoint(iPAddress, port); // Crea el punto de enlace local
+
+            c_Socket = new Socket(iPAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp); //Crear el socket del cliente
+            }
+
+        //Metodo de conexion para que el cliente se conecte al servidor
+        public void Start_Client()
+        {
+            c_Socket.Connect(localEndPoint); //Conecta el socket al servidor
+            Task.Run(() => RecibirMensaje()); //! Enviar mensajes al servidor metodo
+
+            #region ENVIAR VARIOS MENSAJES AL SERVIDOR
+
+            //Al estar dentro de un bucle while se haran varios mensajes hasta que se cumpla la condicion indicada. 
+            while (true)
+            {
+                Console.WriteLine("Escribe tu mensaje para finalizar la conexion 'fin' ");
+                string mg = Console.ReadLine(); //Leer el mensaje
+
+                //! Da igual que el cliente escriba "fin" o "FIN" o combinadno mayusculas y minusculas se va a desconectar igualmente (ya que se pasara a minusculas)
+
+                if (mg.ToLower() == "fin") //Compara el mensaje con "fin" para comprobar que el cliente quiera salir
+                {
+                    Send(mg); //Envia el mensaje al servidor
+                    Close_Client(); //Cierra el socket cuando compruebe que es igual a fin
+                    break; //Se rompe el bucle
+                }
+                    Send(mg); //Mientras que no sea "fin" se siguen enviando mensajes al servidor
+
+            } 
+            #endregion
+        }
+
+        private void RecibirMensaje()
+        {
+            byte[] buffer = new byte[1024];
+            try
+            {
+                while (true)
+                {
+                    int  _b = s_Socket.Receive(buffer);
+                    if (_b == 0)
+                    {
+                        Console.WriteLine("Servidor desconectado");
+                        break;
+                    }
+                    string _smg = Encoding.UTF8.GetString(buffer, 0, _b);
+                    Console.WriteLine($"> Servidor Mensaje: {_smg}");
+
+                }
+
+            }catch(Exception ex) {
+                Console.WriteLine($"Error: {ex.Message}" );
+            }
+
+        }
+
+
+
+        //Metodo para enviar mensajes al servidor
+        public void Send(string mg) {
+            byte[] buffer = new byte[1024]; // Crear un buffuer de 1024 bytes para el mensaje
+            buffer = Encoding.UTF8.GetBytes(mg); // Codifica el mensaje en UTF8 
+            c_Socket.Send(buffer); //Enviar el mensaje al servidor
+
+        }
+
+        //Metodo para cerrar el socket del cliente
+        public void Close_Client()
+        {
+            c_Socket.Shutdown(SocketShutdown.Both); //Cierra el socket
+            c_Socket.Close(); //Cierra el socket
+        }
+    }
+}
+
+---
+
+Codigo Server
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Chat_Server
+{
+
+    /// <summary>
+    /// Class Server. 
+    /// </summary>
+
+    class Server
+    {
+
+        #region VARIABLES
+        private IPHostEntry host; //  Determina el host local
+        private IPAddress ipAddress; // obtiene la IP del Host
+        private IPEndPoint localEndPoint; // Crea el EndPoint para la creacion del socket
+
+        //variables para los sockets
+        Socket s_socket;  //Socket del servidor
+        Socket client_sock;
+        #endregion
+
+
+        //Constructor de la clase server, donde se le pasa la ip y el nº del puerto.
+        public Server(string ipLocal, int port) {
+            host = Dns.GetHostEntry(ipLocal); // Determina el host local
+            ipAddress = host.AddressList[0]; //Obtiene la direccion IP
+            localEndPoint = new IPEndPoint(ipAddress, port); //Crea el EndPoint para el socket 
+
+
+            try //Con el try_catch se controla si hay errores al crear el socket
+            {
+            s_socket = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp); // Crear el socket
+            s_socket.Bind(localEndPoint); // Asociar el socket con el EndPoint
+            s_socket.Listen(10); //Escuchar conexiones entrantes
+            }catch(SocketException e) //Si hay un error se lanzara el SocketException
+            {
+                Console.WriteLine($"Se ha producido un error en el servidor: \n {e.Message}");
+            }
+
+        }
+
+        //Metodo para iniciar el servidor
+        public void Start()
+        {
+            Console.WriteLine("... SERVIDOR EN ESPERA ...");
+
+            //! Con este bloque del codigo (que esta comentado) se puede recibir un solo mensaje y luego se cerrrara la conexion del servidor
+            #region PARA RECIBIR UN SOLO MENSAJE
+
+            /*
+            byte[] buffer = new byte[1024];
+            string mg;
+            client_sock = s_socket.Accept(); //Acepta la conexion del cliente
+            client_sock.Receive(buffer); //Recibe el mensaje del cliente
+            mg = Encoding.UTF8.GetString(buffer); //Convertir el mensaje a String
+            Console.WriteLine("Mensaje recibido: " + mg );
+            */
+            #endregion
+
+          #region Para recibir varios mensajes y la conexion no se cierre hasta que el cliente la cierre
+            #endregion
+
+            while (true) // Con este bucle es para acpetar la conexion del cliente y recibir varios mensajes
+            {
+                client_sock = s_socket.Accept(); //Acepta la conexion del cliente
+
+                //! Console.WriteLine($"Cliente conectado desde el puerto: {client_sock.RemoteEndPoint.ToString}"); 
+                //! ⤴ no pone la forma corecta del puerto, es decir pone: System.Func`1[System.String]
+
+                Console.WriteLine($"Cliente conectado desde el puerto: " +
+                    $"{IPAddress.Parse(((IPEndPoint)client_sock.RemoteEndPoint).Address.ToString())} "); //Con esa sintaxis hace que se muestre por conosola el puerto 
+
+                Task.Run(() => HiloCliente(client_sock)); //Manejar la conexion de cliente en un hilo 
+
+                //TODO Implementar el envio de mensajes al cliente
+
+
+                //Enviar respuesta al cliente
+                Console.WriteLine("Enviar respuesta: ");
+                String mg = Console.ReadLine();
+                Send(mg);
+            
+            }
+
+        }
+
+        private void Send(string mg)
+        {
+            byte[] buffer = new byte[1024];
+            buffer = Encoding.UTF8.GetBytes(mg);
+            client_sock.Send(buffer);
+        }
+
+   
+
+        //Metodo para enviar mensajes al cliente
+
+
+        //Metodo para manejar la conexion del cliente
+        private void HiloCliente(Socket client_sock)
+        {
+            byte[] buffer = new byte[1024]; //Buffer para recibir los mensajes
+           
+                try //El try_catch para controlar los posibles errores que ocurran
+                {
+                while (true)
+                {
+                int _buffer = client_sock.Receive(buffer);
+                    if (_buffer == 0) //se cierra si no hay datos
+                    {
+                        Console.WriteLine("Cliente desconectado");
+                        break; 
+                        //Se cortara la conexion, pero el servidor se pondra en estado de "pausa" (el estado del hilo del servidor seria ¿dormido?) 
+                    }
+
+                    //Recoge el mensaje enviado del cliente y lo convierte a string, para luego pasarlo a minusculas; y asi poder mostrarlo por pantalla
+                    string mg = Encoding.UTF8.GetString(buffer, 0, _buffer).ToLower();
+                    Console.WriteLine("Mensaje recibido: " + mg);
+
+                    if (mg == "fin") //si el cliente envia "fin" se cierra la conexion
+                    {
+                        Console.WriteLine("Cliente cerro la conexion");
+                        break;
+                    }
+                }
+
+                }catch(SocketException e) //En caso de error se lanzara la excepcion
+                {
+                    Console.WriteLine($"Se ha producciodo un error: {e.Message}");
+                }
+            //TODO Implementar Finally para finalizar la conexion con el cliente
+                 finally
+                 {
+                    client_sock.Close(); //Cerrar la conexion con el cliente
+                 }
+           
+        }
+    }
+}
