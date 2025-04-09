@@ -13,7 +13,7 @@
 Revisar porque sale un campo en NULL del s_Socket: 
 1>C:\Users\Administrador\Downloads\Chat_Cliente-master\Chat_Cliente\Cliente.cs(25,16,25,24): warning CS0649: El campo 'Client.s_Socket' nunca se asigna y siempre tendrá el valor predeterminado null
 
-Congelamiento en la parte de los mensajes de envio al servidor, despues de intenar mandar mensajes/escribirlos se bloquea/congela la consola y no se muestran los mensajes, para que funcione hay que descongerla _sin usar un lanzallamas_ ctl+c y se descongela, muestra los mensajes enviados
+Congelamiento en la parte de los mensajes de envio al servidor, despues de intenar mandar mensajes/escribirlos se bloquea/congela la consola y no se muestran los mensajes, para que funcione hay que descongerla _sin usar un lanzallamas_ ctl+c y se descongela, muestra los mensajes enviados. Aparte de que se congela en el servidor y no se puede hacer nada.
 
 
 Cosas anomalias del codigo cliente: == CLIENTE CHAT ==
