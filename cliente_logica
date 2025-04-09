@@ -1,0 +1,107 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Chat_Cliente
+{
+   
+    /// <summary>
+    /// Class Client
+    /// </summary>
+
+    class Client
+    {
+        #region VARIABLES
+        private IPHostEntry host; // Determina el host local
+        private IPAddress iPAddress; // Obtiene la direccion IP Local
+        private IPEndPoint localEndPoint; // Crea el punto de enlace local
+
+        //VARIABLES PARA EL SOCKET
+        Socket c_Socket; // Crea el socket del cliente
+        Socket s_Socket; //Crea el socket del servidor
+
+        #endregion
+
+        //Constructor de la clase cliente, donde al igual que al servidor se le pasa el ip y el nº del puerto
+        public Client(string ipLocal, int port) {
+            host = Dns.GetHostEntry(ipLocal); // Determina el host local
+            iPAddress = host.AddressList[0]; //Obtiene la direccion IP local 
+            localEndPoint = new IPEndPoint(iPAddress, port); // Crea el punto de enlace local
+
+            c_Socket = new Socket(iPAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp); //Crear el socket del cliente
+            }
+
+        //Metodo de conexion para que el cliente se conecte al servidor
+        public void Start_Client()
+        {
+            c_Socket.Connect(localEndPoint); //Conecta el socket al servidor
+            Task.Run(() => RecibirMensaje());
+
+            #region ENVIAR VARIOS MENSAJES AL SERVIDOR
+
+            //Al estar dentro de un bucle while se haran varios mensajes hasta que se cumpla la condicion indicada. 
+            while (true)
+            {
+                Console.WriteLine("Escribe tu mensaje para finalizar la conexion 'fin' ");
+                string mg = Console.ReadLine(); //Leer el mensaje
+
+                //! Da igual que el cliente escriba "fin" o "FIN" o combinadno mayusculas y minusculas se va a desconectar igualmente (ya que se pasara a minusculas)
+
+                if (mg.ToLower() == "fin") //Compara el mensaje con "fin" para comprobar que el cliente quiera salir
+                {
+                    Send(mg); //Envia el mensaje al servidor
+                    Close_Client(); //Cierra el socket cuando compruebe que es igual a fin
+                    break; //Se rompe el bucle
+                }
+                    Send(mg); //Mientras que no sea "fin" se siguen enviando mensajes al servidor
+
+            } 
+            #endregion
+        }
+
+        private void RecibirMensaje()
+        {
+            byte[] buffer = new byte[1024];
+            try
+            {
+                while (true)
+                {
+                    int  _b = s_Socket.Receive(buffer);
+                    if (_b == 0)
+                    {
+                        Console.WriteLine("Servidor desconectado");
+                        break;
+                    }
+                    string _smg = Encoding.UTF8.GetString(buffer, 0, _b);
+                    Console.WriteLine($"> Servidor Mensaje: {_smg}");
+
+                }
+
+            }catch(Exception ex) {
+                Console.WriteLine($"Error: {ex.Message}" );
+            }
+
+        }
+
+
+
+        //Metodo para enviar mensajes al servidor
+        public void Send(string mg) {
+            byte[] buffer = new byte[1024]; // Crear un buffuer de 1024 bytes para el mensaje
+            buffer = Encoding.UTF8.GetBytes(mg); // Codifica el mensaje en UTF8 
+            c_Socket.Send(buffer); //Enviar el mensaje al servidor
+
+        }
+
+        //Metodo para cerrar el socket del cliente
+        public void Close_Client()
+        {
+            c_Socket.Shutdown(SocketShutdown.Both); //Cierra el socket
+            c_Socket.Close(); //Cierra el socket
+        }
+    }
+}
