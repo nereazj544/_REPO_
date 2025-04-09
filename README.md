@@ -1,8 +1,18 @@
 # _REPO_
 
 # Links de importacia
-https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/xmldoc/recommended-tags <br>
-https://rjcodeadvance.com/interfaz-grafico-de-usuario-modernista-multi-window-con-c-version-completa/
+- https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/xmldoc/recommended-tags <br>
+- https://rjcodeadvance.com/interfaz-grafico-de-usuario-modernista-multi-window-con-c-version-completa/ <br>
+- https://learn.microsoft.com/es-es/dotnet/api/system.text.utf8encoding?view=net-8.0 <br>
+- <br>
+- <br>
+- <br>
+
+
+# TODO
+Revisar porque sale un campo en NULL del s_Socket: 
+1>C:\Users\Administrador\Downloads\Chat_Cliente-master\Chat_Cliente\Cliente.cs(25,16,25,24): warning CS0649: El campo 'Client.s_Socket' nunca se asigna y siempre tendrá el valor predeterminado null
+
 
 # Documentacion
 
