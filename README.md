@@ -27,8 +27,8 @@ Instrucciones: Es relativomante hacerlo con un txt o hacer un readme.md donde se
 - https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/xmldoc/recommended-tags <br>
 - how to build an api in java <br>
 - https://www.phidgets.com/education/learn/projects/csharp-gui/?srsltid=AfmBOoqPibKaXRZsXqlFlUgKXdJHfVXW-27TWcvf1KP9XUPGiu3VjX8U<br>
-- <br>
-- <br>
+- chat c# github<br>
+- https://github.com/AKouki/SignalR-Chat<br>
 - <br>
 - <br>
 - <br>
