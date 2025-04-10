@@ -16,6 +16,10 @@ Instrucciones: Es relativomante hacerlo con un txt o hacer un readme.md donde se
 - https://www.justinmind.com/es/blog/especificacion-funcional-documentacion/<br>
 - documento funcional de un codigo de programacion<br>
 - https://learn.microsoft.com/es-es/dotnet/api/system.net.sockets.socketerror?view=net-8.0 <br>
+- https://rapidapi.com/accujazz/api/rawg-video-games-database/playground/apiendpoint_e4e2766f-1422-4b88-bd10-22acdb7c9a16 <br>
+- https://www.igdb.com/api (este es con Twitch) <br>
+- https://rawg.io/apidocs <br>
+- https://developer.themoviedb.org/docs/getting-started <br>
 
 # TODO
 Revisar porque sale un campo en NULL del s_Socket: 
