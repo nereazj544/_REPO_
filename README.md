@@ -24,6 +24,14 @@ Instrucciones: Es relativomante hacerlo con un txt o hacer un readme.md donde se
 - https://platzi.com/blog/12-api-gratis-para-desarrolladores-frontend/ <br>
 - https://developer.themoviedb.org/reference/configuration-details <br>
 - https://dev.to/rtagliavia/creando-una-base-de-datos-de-peliculas-con-la-api-de-omdb-y-react-of4 <br>
+- https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/xmldoc/recommended-tags <br>
+- <br>
+- <br>
+- <br>
+- <br>
+- <br>
+- <br>
+- <br>
 
 # TODO
 Revisar porque sale un campo en NULL del s_Socket: 
