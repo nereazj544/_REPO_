@@ -26,7 +26,7 @@ Instrucciones: Es relativomante hacerlo con un txt o hacer un readme.md donde se
 - https://dev.to/rtagliavia/creando-una-base-de-datos-de-peliculas-con-la-api-de-omdb-y-react-of4 <br>
 - https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/xmldoc/recommended-tags <br>
 - how to build an api in java <br>
-- <br>
+- https://www.phidgets.com/education/learn/projects/csharp-gui/?srsltid=AfmBOoqPibKaXRZsXqlFlUgKXdJHfVXW-27TWcvf1KP9XUPGiu3VjX8U<br>
 - <br>
 - <br>
 - <br>
