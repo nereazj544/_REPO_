@@ -20,6 +20,10 @@ Instrucciones: Es relativomante hacerlo con un txt o hacer un readme.md donde se
 - https://www.igdb.com/api (este es con Twitch) <br>
 - https://rawg.io/apidocs <br>
 - https://developer.themoviedb.org/docs/getting-started <br>
+- https://www.google.com/search?q=api+de+pel%C3%ADculas&client=firefox-b-d&sca_esv=9520d6856541b429&ei=daf3Z5jbLoSSkdUP4OON-A8&oq=apis+series&gs_lp=Egxnd3Mtd2l6LXNlcnAiC2FwaXMgc2VyaWVzKgIIATIKEAAYsAMY1gQYRzIKEAAYsAMY1gQYRzIKEAAYsAMY1gQYRzIKEAAYsAMY1gQYRzIKEAAYsAMY1gQYRzIKEAAYsAMY1gQYRzIKEAAYsAMY1gQYRzIKEAAYsAMY1gQYR0i_FVAAWABwAXgAkAEAmAFNoAFNqgEBMbgBA8gBAJgCAaACDZgDAIgGAZAGCJIHATGgB-wEsgcAuAcA&sclient=gws-wiz-serp <br>
+- https://platzi.com/blog/12-api-gratis-para-desarrolladores-frontend/ <br>
+- https://developer.themoviedb.org/reference/configuration-details <br>
+- https://dev.to/rtagliavia/creando-una-base-de-datos-de-peliculas-con-la-api-de-omdb-y-react-of4 <br>
 
 # TODO
 Revisar porque sale un campo en NULL del s_Socket: 
