@@ -30,7 +30,7 @@ Instrucciones: Es relativomante hacerlo con un txt o hacer un readme.md donde se
 - chat c# github<br>
 - https://github.com/AKouki/SignalR-Chat<br>
 - https://learn.microsoft.com/es-es/dotnet/standard/base-types/regular-expressions<br>
-- <br>
+- (*PATTER/REGEX*): https://www.programiz.com/csharp-programming/regex <br>
 - <br>
 
 # TODO
