@@ -34,19 +34,8 @@ Instrucciones: Es relativomante hacerlo con un txt o hacer un readme.md donde se
 - <br>
 
 # TODO
-Revisar porque sale un campo en NULL del s_Socket: 
-1>C:\Users\Administrador\Downloads\Chat_Cliente-master\Chat_Cliente\Cliente.cs(25,16,25,24): warning CS0649: El campo 'Client.s_Socket' nunca se asigna y siempre tendrá el valor predeterminado null
 
-Congelamiento en la parte de los mensajes de envio al servidor, despues de intenar mandar mensajes/escribirlos se bloquea/congela la consola y no se muestran los mensajes, para que funcione hay que descongerla _sin usar un lanzallamas_ ctl+c y se descongela, muestra los mensajes enviados. Aparte de que se congela en el servidor y no se puede hacer nada.
-
-TimedOut implementar
-
-
-Cosas anomalias del codigo cliente: == CLIENTE CHAT ==
-Conectado al Servidor
-Escribe tu mensaje para finalizar la conexion 'fin'
-Error: Object reference not set to an instance of an object.
-
+<br>
 # Documentacion
 
     Etiquetas generales usadas para varios elementos: estas etiquetas son el conjunto mínimo de cualquier API.
