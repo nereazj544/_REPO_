@@ -36,8 +36,8 @@ Instrucciones: Es relativomante hacerlo con un txt o hacer un readme.md donde se
 - https://es.stackoverflow.com/questions/389839/regex-que-permita-un-%C3%BAnico-espacio-en-blanco-entre-palabras-c<br>
 - https://ironpdf.com/es/blog/net-help/csharp-catch-multiple-exceptions/<br>
 - https://es.stackoverflow.com/questions/465541/listar-archivos-en-todas-las-carpetas-de-c-c <br>
-- <br>
-- <br>
+- https://www.forosdelweb.com/f29/recorrer-archivos-carpeta-c-989266/ <br>
+- https://medium.com/@antoharyanto/creating-an-http-server-using-tcp-socket-in-c-without-third-party-libraries-for-a-better-a68d2102b1d0<br>
 - <br>
 - <br>
 - <br>
