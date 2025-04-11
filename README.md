@@ -35,6 +35,16 @@ Instrucciones: Es relativomante hacerlo con un txt o hacer un readme.md donde se
 - https://medium.com/@syantien/c-regular-expressions-a-comprehensive-guide-for-new-engineers-71d85e4c480b<br>
 - https://es.stackoverflow.com/questions/389839/regex-que-permita-un-%C3%BAnico-espacio-en-blanco-entre-palabras-c<br>
 - https://ironpdf.com/es/blog/net-help/csharp-catch-multiple-exceptions/<br>
+- https://es.stackoverflow.com/questions/465541/listar-archivos-en-todas-las-carpetas-de-c-c <br>
+- <br>
+- <br>
+- <br>
+- <br>
+- <br>
+- <br>
+- <br>
+- <br>
+- <br>
 - <br>
 
 # TODO
